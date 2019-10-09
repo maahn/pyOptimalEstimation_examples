@@ -14,8 +14,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
@@ -105,3 +103,6 @@ venv.bak/
 
 # Mac OS specific
 .DS_Store
+
+# large netcdf file
+data/radiosonde_climatology_nsa.nc
