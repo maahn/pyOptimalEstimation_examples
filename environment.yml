@@ -1,0 +1,20 @@
+name: pyoe_examples
+dependencies:
+- python>=3.6
+- nb_conda
+- numpy
+- matplotlib
+- scipy
+- pandas
+- xarray
+- uncertainties
+- seaborn
+- pip
+- cython
+- dask
+- netcdf4
+- numba
+- pip:
+  # - pyOptimalEstimation
+  - git+git://github.com/maahn/pamtra2.git@7d4cb2feb42342b5bdf088b08fbf9ccacfce08aa
+  - git+git://github.com/maahn/pyOptimalEstimation.git

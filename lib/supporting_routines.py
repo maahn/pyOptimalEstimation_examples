@@ -69,7 +69,7 @@ def plotCorrelation(cov, fig, sp, tickLabels=None, isCov=True,cmap='viridis_r'):
     x, y = np.meshgrid(ind_array, ind_array)
     for i, (x_val, y_val) in enumerate(zip(x.flatten(), y.flatten())):
         if x_val < y_val:
-            c = "%.g" % cov.ix[x_val, y_val]
+            c = "%.g" % cov.iloc[x_val, y_val]
             sp.text(
                 x_val + 0.5,
                 y_val + 0.5,
@@ -79,7 +79,7 @@ def plotCorrelation(cov, fig, sp, tickLabels=None, isCov=True,cmap='viridis_r'):
                 fontsize=9)
             
         if x_val > y_val:
-            c = "%.g" % cor.ix[x_val, y_val]
+            c = "%.g" % cor.iloc[x_val, y_val]
             sp.text(
                 x_val + 0.5,
                 y_val + 0.5,
@@ -88,10 +88,10 @@ def plotCorrelation(cov, fig, sp, tickLabels=None, isCov=True,cmap='viridis_r'):
                 ha='center',
                 color='w',
                 fontsize=9)
-            cor.ix[x_val, y_val] = -1
+            cor.iloc[x_val, y_val] = -1
             
         if x_val == y_val:
-            c = "%.g" % cov.ix[x_val, y_val]
+            c = "%.g" % cov.iloc[x_val, y_val]
             sp.text(
                 x_val + 0.5,
                 y_val + 0.5,
@@ -100,7 +100,7 @@ def plotCorrelation(cov, fig, sp, tickLabels=None, isCov=True,cmap='viridis_r'):
                 ha='center',
                 color='k',
                 fontsize=9)
-            cor.ix[x_val, y_val] = -1
+            cor.iloc[x_val, y_val] = -1
 
 
 

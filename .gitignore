@@ -106,3 +106,7 @@ venv.bak/
 
 # large netcdf file
 data/radiosonde_climatology_nsa.nc
+
+#images
+*.pdf
+*.png
