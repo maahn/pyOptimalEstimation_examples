@@ -17,6 +17,8 @@ dependencies:
 - gxx_linux-64
 - gcc_linux-64
 - gfortran_linux-64
+- fftw
+- lapack
 - pip:
   # - pyOptimalEstimation
   - git+git://github.com/maahn/pamtra2.git@7d4cb2feb42342b5bdf088b08fbf9ccacfce08aa
