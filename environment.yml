@@ -1,4 +1,6 @@
 name: pyoe_examples
+channels:
+- conda-forge
 dependencies:
 - python>=3.6
 - nb_conda
