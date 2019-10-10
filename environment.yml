@@ -1,6 +1,7 @@
 name: pyoe_examples
 channels:
 - conda-forge
+- default
 dependencies:
 - python>=3.6
 - nb_conda
@@ -16,7 +17,6 @@ dependencies:
 - dask
 - netcdf4
 - numba
-- gxx_linux-64
 - gcc_linux-64
 - gfortran_linux-64
 - fftw
