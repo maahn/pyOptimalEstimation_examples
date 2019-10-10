@@ -23,5 +23,6 @@ dependencies:
 - lapack
 - pip:
   # - pyOptimalEstimation
-  - git+git://github.com/maahn/pamtra2.git@7d4cb2feb42342b5bdf088b08fbf9ccacfce08aa
+  # - git+git://github.com/maahn/pamtra2.git@7d4cb2feb42342b5bdf088b08fbf9ccacfce08aa
+  - git+git://github.com/maahn/pamtra2.git
   - git+git://github.com/maahn/pyOptimalEstimation.git
