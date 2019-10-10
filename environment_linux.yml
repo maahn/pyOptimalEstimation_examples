@@ -1,7 +1,7 @@
-#Mybinder is picky, so it get's it's own environment file
+name: pyoe_examples
 channels:
 - conda-forge
-- default
+# - default
 dependencies:
 - python>=3.6
 - nb_conda
@@ -17,8 +17,12 @@ dependencies:
 - dask
 - netcdf4
 - numba
+- gcc_linux-64
+- gfortran_linux-64
+- fftw
+- lapack
 - pip:
   # - pyOptimalEstimation
   # - git+git://github.com/maahn/pamtra2.git@7d4cb2feb42342b5bdf088b08fbf9ccacfce08aa
-  - git+git://github.com/maahn/pamtra2.git@python_only
+  - git+git://github.com/maahn/pamtra2.git
   - git+git://github.com/maahn/pyOptimalEstimation.git
