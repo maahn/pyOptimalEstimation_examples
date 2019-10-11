@@ -350,3 +350,12 @@ def plotMwrResults(oe1, title=None, oe2=None, h=None, hlabel='Height [m]'):
     return fig
 
 
+def q2a(q, p, T):
+    '''
+    specific to absolute humidty
+    '''
+    Rair = 287.04  # J/kg/K
+    Rvapor = 461.5  # J/kg/K
+    rho = p / (Rair * T * (1 + (Rvapor / Rair - 1) * q)) #density kg/m3
+    return q*rho
+
