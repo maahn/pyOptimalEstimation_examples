@@ -338,7 +338,7 @@ def plotMwrResults(oe1, title=None, oe2=None, h=None, hlabel='Height [m]'):
 
 
         ax1.set_xlabel('Temperature [K]')
-        ax2.set_xlabel('Specific humidity [g/kg]')
+        ax2.set_xlabel('Specific humidity [log$_{10}$(g/kg)]')
     if h is not None:
         axA.invert_yaxis()    
 
@@ -359,3 +359,12 @@ def q2a(q, p, T):
     rho = p / (Rair * T * (1 + (Rvapor / Rair - 1) * q)) #density kg/m3
     return q*rho
 
+def print_mwr_rms(oe):
+    T_op, Q_op = splitTQ(oe.x_op)
+    T_truth, Q_truth = splitTQ(oe.x_truth)
+
+    print('RMS X: T',np.sqrt(np.mean((T_op-T_truth)**2)))
+    print('RMS X: Q',np.sqrt(np.mean((10**Q_op-10**Q_truth)**2)))
+    print('RMS Y', np.sqrt(np.mean((oe.y_obs - oe.y_op)**2)))
+
+    
