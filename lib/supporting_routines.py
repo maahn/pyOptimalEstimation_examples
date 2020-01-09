@@ -360,11 +360,99 @@ def q2a(q, p, T):
     return q*rho
 
 def print_mwr_rms(oe):
-    T_op, Q_op = splitTQ(oe.x_op)
+    T_optimal, Q_optimal = splitTQ(oe.x_op)
     T_truth, Q_truth = splitTQ(oe.x_truth)
 
-    print('RMS X: T',np.sqrt(np.mean((T_op-T_truth)**2)))
-    print('RMS X: Q',np.sqrt(np.mean((10**Q_op-10**Q_truth)**2)))
-    print('RMS Y', np.sqrt(np.mean((oe.y_obs - oe.y_op)**2)))
-
+    print('RMS X Temperature: %g [K]'% np.sqrt(np.mean((T_optimal - T_truth)**2)))
+    print('RMS X Humidity: %g [log$_{10}$(g/kg)]'% np.sqrt(np.mean((10**Q_optimal - 10**Q_truth)**2)))
+    print('RMS Y %g [K]'% np.sqrt(np.mean((oe.y_obs - oe.y_op)**2)))
     
+    
+def plot_uncertainty_dof(oe1, oe2, label2, pressure):
+
+    fig, (axA, axB, axC) = plt.subplots(ncols=3, sharey=True, figsize=(8, 4))
+
+    T, Q = splitTQ(oe1.x_op_err / oe1.x_a_err)
+    T_e, Q_e = splitTQ(oe2.x_op_err / oe2.x_a_err)
+
+    axA.plot(T, pressure, color='C2', label='Temperature')
+    axA.plot(
+        T_e,
+        pressure,
+        color='C2',
+        ls=':',
+        label=label2)
+
+    axA.plot(
+        Q,
+        pressure,
+        color='C3',
+        label='Specific humidity')
+    axA.plot(
+        Q_e,
+        pressure,
+        color='C3',
+        ls=':',
+        label=label2)
+
+    T, Q = [(x) for x in splitTQ(oe1.dgf_x)]
+    T_e, Q_e = [(x) for x in splitTQ(oe2.dgf_x)]
+
+    axB.plot(T, pressure, color='C2', label='Temperature')
+    axB.plot(
+        T_e,
+        pressure,
+        color='C2',
+        ls=':',
+        label=label2)
+
+    axB.plot(
+        Q,
+        pressure,
+        color='C3',
+        label='Specific humidity')
+    axB.plot(
+        Q_e,
+        pressure,
+        color='C3',
+        ls=':',
+        label=label2)
+
+    T, Q = [np.cumsum(x) for x in splitTQ(oe1.dgf_x)]
+    T_e, Q_e = [np.cumsum(x) for x in splitTQ(oe2.dgf_x)]
+
+    axC.plot(T, pressure, color='C2', label='Temperature')
+    axC.plot(
+        T_e,
+        pressure,
+        color='C2',
+        ls=':',
+        label=label2)
+
+    axC.plot(
+        Q,
+        pressure,
+        color='C3',
+        label='Specific humidity')
+    axC.plot(
+        Q_e,
+        pressure,
+        color='C3',
+        ls=':',
+        label=label2)
+
+
+
+    axB.legend(frameon=False)
+    axC.set_xlabel('Cumulative degrees\nof freedom [-]')
+    axB.set_xlabel('Degrees of freedom [-]')
+    axA.set_xlabel('Optimal to prior uncertainty [-]')
+
+    axA.set_ylabel('Pressure [hPa]')
+    axA.invert_yaxis()
+    axA.set_xlim(-0.05,1.1)
+    fig.subplots_adjust(wspace=0.05)
+    
+    return fig
+
+
