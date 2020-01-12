@@ -3,6 +3,7 @@ from copy import deepcopy
 import pandas as pn
 import numpy as np
 import xarray as xr
+import matplotlib
 import matplotlib.pyplot as plt
 import scipy.special
 import numpy.linalg as LA
@@ -368,20 +369,22 @@ def print_mwr_rms(oe):
     print('RMS Y %g [K]'% np.sqrt(np.mean((oe.y_obs - oe.y_op)**2)))
     
     
-def plot_uncertainty_dof(oe1, oe2, label2, pressure):
+def plot_uncertainty_dof(oe1, oe2, label2, pressure, oe3=None, label3=None):
 
     fig, (axA, axB, axC) = plt.subplots(ncols=3, sharey=True, figsize=(8, 4))
 
     T, Q = splitTQ(oe1.x_op_err / oe1.x_a_err)
-    T_e, Q_e = splitTQ(oe2.x_op_err / oe2.x_a_err)
+    T_2, Q_2 = splitTQ(oe2.x_op_err / oe2.x_a_err)
+
 
     axA.plot(T, pressure, color='C2', label='Temperature')
     axA.plot(
-        T_e,
+        T_2,
         pressure,
         color='C2',
-        ls=':',
-        label=label2)
+        ls='-.',
+        label=''
+    )
 
     axA.plot(
         Q,
@@ -389,21 +392,42 @@ def plot_uncertainty_dof(oe1, oe2, label2, pressure):
         color='C3',
         label='Specific humidity')
     axA.plot(
-        Q_e,
+        Q_2,
         pressure,
         color='C3',
-        ls=':',
-        label=label2)
+        ls='-.',
+        label=''
+    )
 
+    if oe3 is not None:
+        T_3, Q_3 = splitTQ(oe3.x_op_err / oe3.x_a_err)
+        axA.plot(
+            T_3,
+            pressure,
+            color='C2',
+            ls=':',
+            label=''
+        )
+        axA.plot(
+            Q_3,
+            pressure,
+            color='C3',
+            ls=':',
+            label=''
+        )
+
+
+    
     T, Q = [(x) for x in splitTQ(oe1.dgf_x)]
-    T_e, Q_e = [(x) for x in splitTQ(oe2.dgf_x)]
+    T_2, Q_2 = [(x) for x in splitTQ(oe2.dgf_x)]
+
 
     axB.plot(T, pressure, color='C2', label='Temperature')
     axB.plot(
-        T_e,
+        T_2,
         pressure,
         color='C2',
-        ls=':',
+        ls='-.',
         label=label2)
 
     axB.plot(
@@ -412,21 +436,37 @@ def plot_uncertainty_dof(oe1, oe2, label2, pressure):
         color='C3',
         label='Specific humidity')
     axB.plot(
-        Q_e,
+        Q_2,
         pressure,
         color='C3',
-        ls=':',
+        ls='-.',
         label=label2)
+    if oe3 is not None:
+        T_3, Q_3 = [(x) for x in splitTQ(oe3.dgf_x)]
+        axB.plot(
+            T_3,
+            pressure,
+            color='C2',
+            ls=':',
+            label=label3)
 
+        axB.plot(
+            Q_3,
+            pressure,
+            color='C3',
+            ls=':',
+            label=label3)
+
+    
     T, Q = [np.cumsum(x) for x in splitTQ(oe1.dgf_x)]
-    T_e, Q_e = [np.cumsum(x) for x in splitTQ(oe2.dgf_x)]
+    T_2, Q_2 = [np.cumsum(x) for x in splitTQ(oe2.dgf_x)]
 
     axC.plot(T, pressure, color='C2', label='Temperature')
     axC.plot(
-        T_e,
+        T_2,
         pressure,
         color='C2',
-        ls=':',
+        ls='-.',
         label=label2)
 
     axC.plot(
@@ -435,15 +475,43 @@ def plot_uncertainty_dof(oe1, oe2, label2, pressure):
         color='C3',
         label='Specific humidity')
     axC.plot(
-        Q_e,
+        Q_2,
         pressure,
         color='C3',
-        ls=':',
+        ls='-.',
         label=label2)
 
+    if oe3 is not None:
+        T_3, Q_3 = [np.cumsum(x) for x in splitTQ(oe3.dgf_x)]
+        axC.plot(
+            T_3,
+            pressure,
+            color='C2',
+            ls=':',
+            label=label3)
+
+        axC.plot(
+            Q_3,
+            pressure,
+            color='C3',
+            ls=':',
+            label=label3)
 
 
-    axB.legend(frameon=False)
+
+    axA.legend(frameon=False, loc='upper left')
+#     axB.legend(frameon=False)
+    
+
+    lines = [matplotlib.lines.Line2D([0], [0], color='gray', linestyle=ls) for ls in ['-','-.',':']]
+    labels = ['reference', label2, label3]
+    if oe3 is None:
+        lines.pop()
+        labels.pop()
+    
+    axB.legend(lines,labels,frameon=False, loc='upper right')
+
+
     axC.set_xlabel('Cumulative degrees\nof freedom [-]')
     axB.set_xlabel('Degrees of freedom [-]')
     axA.set_xlabel('Optimal to prior uncertainty [-]')
