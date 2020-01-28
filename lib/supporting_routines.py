@@ -290,21 +290,30 @@ def splitTQ(x):
     
     return xt, xq
 
-def plotMwrResults(oe1, title=None, oe2=None, h=None, hlabel='Height [m]'):
+def plotMwrResults(oe1, title=None, oe2=None, title2=None, oe3 = None, title3=None, h=None, hlabel='Height [m]', xlimT=(None, None), xlimH=(None, None)):
     
     if oe2 is None:
         gridspec = dict(wspace=0.0)        
         fig, (axA,axB) = plt.subplots(ncols=2, sharey=True, gridspec_kw=gridspec, figsize = [5.0, 4.0])
-        vals = [oe1], [axA], [axB]
-    else:
+        vals = [oe1], [axA], [axB], [title]
+    elif oe3 is None:
         
         gridspec = dict(wspace=0.0, width_ratios=[1, 1, 0.25, 1, 1])        
         fig, (axA,axB, ax0, axC, axD) = plt.subplots(ncols=5, sharey=True, figsize = [10.0, 4.0], gridspec_kw=gridspec)
-        vals = [oe1, oe2], [axA,axC], [axB, axD]
+        vals = [oe1, oe2], [axA,axC], [axB, axD], [title, title2]
         ax0.set_visible(False)
+    else:
+        
+        gridspec = dict(wspace=0.0, width_ratios=[1, 1, 0.1, 1, 1, 0.1, 1, 1])        
+        fig, (axA,axB, ax0, axC, axD, ax1, axE, axF) = plt.subplots(ncols=8, sharey=True, figsize = [12.0, 4.0], gridspec_kw=gridspec)
+        vals = [oe1, oe2, oe3], [axA,axC, axE], [axB, axD, axF], [title, title2, title3]
+        ax0.set_visible(False)
+        ax1.set_visible(False)
+
+
 
         
-    for oe, ax1, ax2 in zip(*vals):
+    for oe, ax1, ax2, tit in zip(*vals):
         
         t_op, q_op = splitTQ(oe.x_op)
         t_op_err, q_op_err = splitTQ(oe.x_op_err)
@@ -339,7 +348,13 @@ def plotMwrResults(oe1, title=None, oe2=None, h=None, hlabel='Height [m]'):
 
 
         ax1.set_xlabel('Temperature [K]')
-        ax2.set_xlabel('Specific humidity [log$_{10}$(g/kg)]')
+        ax2.set_xlabel('Specific humidity\n[log$_{10}$(g/kg)]')
+
+        ax1.set_xlim(xlimT)
+        ax2.set_xlim(xlimH)
+        
+        ax1.set_title(tit, loc = 'left')
+
     if h is not None:
         axA.invert_yaxis()    
 
@@ -347,7 +362,6 @@ def plotMwrResults(oe1, title=None, oe2=None, h=None, hlabel='Height [m]'):
 
     axA.legend(loc='upper right')
     
-    fig.suptitle(title)
     return fig
 
 
@@ -371,15 +385,15 @@ def print_mwr_rms(oe):
     
 def plot_uncertainty_dof(oe1, oe2, label2, pressure, oe3=None, label3=None):
 
-    fig, (axA, axB, axC) = plt.subplots(ncols=3, sharey=True, figsize=(8, 4))
+    fig, (axA, axB) = plt.subplots(ncols=2, sharey=True, figsize=(7, 4))
 
     T, Q = splitTQ(oe1.x_op_err / oe1.x_a_err)
     T_2, Q_2 = splitTQ(oe2.x_op_err / oe2.x_a_err)
 
 
-    axA.plot(T, pressure, color='C2', label='Temperature')
+    axA.plot(T*100, pressure, color='C2', label='Temperature')
     axA.plot(
-        T_2,
+        T_2*100,
         pressure,
         color='C2',
         ls='-.',
@@ -387,12 +401,12 @@ def plot_uncertainty_dof(oe1, oe2, label2, pressure, oe3=None, label3=None):
     )
 
     axA.plot(
-        Q,
+        Q*100,
         pressure,
         color='C3',
         label='Specific humidity')
     axA.plot(
-        Q_2,
+        Q_2*100,
         pressure,
         color='C3',
         ls='-.',
@@ -402,14 +416,14 @@ def plot_uncertainty_dof(oe1, oe2, label2, pressure, oe3=None, label3=None):
     if oe3 is not None:
         T_3, Q_3 = splitTQ(oe3.x_op_err / oe3.x_a_err)
         axA.plot(
-            T_3,
+            T_3 * 100,
             pressure,
             color='C2',
             ls=':',
             label=''
         )
         axA.plot(
-            Q_3,
+            Q_3 * 100,
             pressure,
             color='C3',
             ls=':',
@@ -458,44 +472,6 @@ def plot_uncertainty_dof(oe1, oe2, label2, pressure, oe3=None, label3=None):
             label=label3)
 
     
-    T, Q = [np.cumsum(x) for x in splitTQ(oe1.dgf_x)]
-    T_2, Q_2 = [np.cumsum(x) for x in splitTQ(oe2.dgf_x)]
-
-    axC.plot(T, pressure, color='C2', label='Temperature')
-    axC.plot(
-        T_2,
-        pressure,
-        color='C2',
-        ls='-.',
-        label=label2)
-
-    axC.plot(
-        Q,
-        pressure,
-        color='C3',
-        label='Specific humidity')
-    axC.plot(
-        Q_2,
-        pressure,
-        color='C3',
-        ls='-.',
-        label=label2)
-
-    if oe3 is not None:
-        T_3, Q_3 = [np.cumsum(x) for x in splitTQ(oe3.dgf_x)]
-        axC.plot(
-            T_3,
-            pressure,
-            color='C2',
-            ls=':',
-            label=label3)
-
-        axC.plot(
-            Q_3,
-            pressure,
-            color='C3',
-            ls=':',
-            label=label3)
 
 
 
@@ -512,13 +488,25 @@ def plot_uncertainty_dof(oe1, oe2, label2, pressure, oe3=None, label3=None):
     axB.legend(lines,labels,frameon=False, loc='upper right')
 
 
-    axC.set_xlabel('Cumulative degrees\nof freedom [-]')
     axB.set_xlabel('Degrees of freedom [-]')
-    axA.set_xlabel('Optimal to prior uncertainty [-]')
+    axA.set_xlabel('Optimal to prior uncertainty [%]')
 
     axA.set_ylabel('Pressure [hPa]')
     axA.invert_yaxis()
-    axA.set_xlim(-0.05,1.1)
+    axA.set_xlim(-5,110)
+    
+    axA.text(0.99, 0.99,
+             'a)',
+             horizontalalignment='right',
+             verticalalignment='top',
+             transform = axA.transAxes
+            )
+    axB.text(0.99, 0.99,
+             'b)',
+             horizontalalignment='right',
+             verticalalignment='top',
+             transform = axB.transAxes
+            )    
     fig.subplots_adjust(wspace=0.05)
     
     return fig
