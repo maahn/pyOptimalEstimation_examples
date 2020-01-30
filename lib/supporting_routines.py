@@ -12,15 +12,15 @@ import numpy.linalg as LA
 import pamtra2
 
 niceKeys = {
-    'Nw_log10': 'log$_{10}$ N$_w$',
-    'Dm_log10': 'log$_{10}$ D$_m$',
-    'Sm_log10': 'log$_{10}$ $\sigma_m$',
+    'Nw_log10': 'log$_{10}$N$_w$',
+    'Dm_log10': 'log$_{10}$D$_m$',
+    'Sm_log10': 'log$_{10}\sigma_m$',
     'Nw': 'N$_w$',
     'Dm': 'D$_m$',
     'Sm': '$\sigma_m$',
     'Smprime': "$\sigma_m\!'$",
     'Sm_prime': "$\sigma_m\!'$",
-    'Smprime_log10': "log$_{10}$ $\sigma_m\!'$",
+    'Smprime_log10': "log$_{10}\sigma_m\!'$",
     'PCS0': 'PCS 0',
     'PCS1': 'PCS 1',
     'PCS2': 'PCS 2',
@@ -386,7 +386,7 @@ def print_mwr_rms(oe):
 
 def plot_uncertainty_dof(oe1, oe2, label2, pressure, oe3=None, label3=None):
 
-    fig, (axA, axB) = plt.subplots(ncols=2, sharey=True, figsize=(7, 4))
+    fig, (axA, axB) = plt.subplots(ncols=2, sharey=True, figsize=(6, 4))
 
     T, Q = splitTQ(oe1.x_op_err / oe1.x_a_err)
     T_2, Q_2 = splitTQ(oe2.x_op_err / oe2.x_a_err)
