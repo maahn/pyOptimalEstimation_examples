@@ -14,7 +14,7 @@ If you are new to Jupyter Notebooks, pelase check out the [official tutorial](ht
 
 
 ## How to try the examples online
-You can try the examples online in your browser without any local installation [on binder](https://mybinder.org/v2/gh/maahn/pyOptimalEstimation_examples/master?filepath=Index.ipynb). Note that it takes a minute or two to launch the server and that the server shuts down when you do not use it for a couple of minutes. Changes are not saved but a modified Notebook an be downloaded via File > Download as > Notebook
+[You can try the examples online in your browser without any local installation on binder by following this link](https://mybinder.org/v2/gh/maahn/pyOptimalEstimation_examples/master?filepath=Index.ipynb). Note that it takes a minute or two to launch the server and that the server shuts down when you do not use it for a couple of minutes. Changes are not saved but a modified Notebook an be downloaded via File > Download as > Notebook
 
 ## How to try the examples locally
 Unless you have pyOptimalEstimation already installed, it is recommended to 
