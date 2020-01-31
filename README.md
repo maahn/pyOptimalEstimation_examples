@@ -1,8 +1,16 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/maahn/pyOptimalEstimation_examples/master?filepath=Index.ipynb)
 
-# pyOptimalEstimation_examples
+# Retrievals and Their Uncertainties: What Every Atmospheric Scientist Should Know 
+# Supplemental material
 
-This repository contains Jupyter Notebook examples for the [pyOptimalEstimation library](https://github.com/maahn/pyOptimalEstimation). If you are new to Jupyter Notebooks, pelase check out the [official tutorial](https://mybinder.org/v2/gh/ipython/ipython-in-depth/master?filepath=binder/Index.ipynb).
+Maximilian Maahn, David D. Turner, Ulrich Löhnert, Derek J. Posselt, Kerstin Ebell, Gerald G. Mace, and Jennifer M. Comstock
+
+This repository contains examples illustrating the use of the [pyOptimalEstimation library](https://github.com/maahn/pyOptimalEstimation). Two Juptyter NOtebooks are provided:
+
+* [Supplement A: Microwave Radiometer Temperature and Humidity Retrieval ](Supplement%20A%20-%20MWR%20retrieval.ipynb)
+* [Supplement B: Cloud Radar Drop Size Distribution Retrieval ](Supplement%20B%20-%20DSD%20retrieval.ipynb)
+
+If you are new to Jupyter Notebooks, pelase check out the [official tutorial](https://mybinder.org/v2/gh/ipython/ipython-in-depth/master?filepath=binder/Index.ipynb).
 
 
 ## How to try the examples online
