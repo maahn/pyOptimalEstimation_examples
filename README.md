@@ -1,6 +1,6 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/maahn/pyOptimalEstimation_examples/master?filepath=Index.ipynb)
 
-# Retrievals and Their Uncertainties: What Every Atmospheric Scientist Should Know 
+# Optimal Estimation Retrievals and Their Uncertainties: What Every Atmospheric Scientist Should Know 
 # Supplemental material
 
 Maximilian Maahn, David D. Turner, Ulrich Löhnert, Derek J. Posselt, Kerstin Ebell, Gerald G. Mace, and Jennifer M. Comstock
