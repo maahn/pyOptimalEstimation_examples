@@ -5,7 +5,7 @@
 
 Maximilian Maahn, David D. Turner, Ulrich Löhnert, Derek J. Posselt, Kerstin Ebell, Gerald G. Mace, and Jennifer M. Comstock
 
-This repository contains examples illustrating the use of the [pyOptimalEstimation library](https://github.com/maahn/pyOptimalEstimation). Two Juptyter NOtebooks are provided:
+This repository contains examples illustrating the use of the [pyOptimalEstimation library](https://github.com/maahn/pyOptimalEstimation). Two Juptyter Notebooks are provided:
 
 * [Supplement A: Microwave Radiometer Temperature and Humidity Retrieval ](Supplement%20A%20-%20MWR%20retrieval.ipynb)
 * [Supplement B: Cloud Radar Drop Size Distribution Retrieval ](Supplement%20B%20-%20DSD%20retrieval.ipynb)
