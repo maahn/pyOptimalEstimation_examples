@@ -3,7 +3,7 @@
 # Optimal Estimation Retrievals and Their Uncertainties: What Every Atmospheric Scientist Should Know 
 # Supplemental material
 
-Maximilian Maahn, David D. Turner, Ulrich Löhnert, Derek J. Posselt, Kerstin Ebell, Gerald G. Mace, and Jennifer M. Comstock
+Maahn, M., D. D. Turner, U. Löhnert, D. J. Posselt, K. Ebell, G. G. Mace, and J. M. Comstock, 2020: Optimal Estimation Retrievals and Their Uncertainties: What Every Atmospheric Scientist Should Know. Bull. Amer. Meteor. Soc., doi:https://doi.org/10.1175/BAMS-D-19-0027.1
 
 This repository contains examples illustrating the use of the [pyOptimalEstimation library](https://github.com/maahn/pyOptimalEstimation). Two Juptyter Notebooks are provided:
 
