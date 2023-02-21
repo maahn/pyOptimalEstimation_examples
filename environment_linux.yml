@@ -17,12 +17,12 @@ dependencies:
 - dask
 - netcdf4
 - numba
-- gcc_linux-64
-- gfortran_linux-64
+- libgcc
+- libgfortran
 - fftw
 - lapack
 - pip:
   # - pyOptimalEstimation
   # - git+git://github.com/maahn/pamtra2.git@7d4cb2feb42342b5bdf088b08fbf9ccacfce08aa
-  - git+git://github.com/maahn/pamtra2.git
-  - git+git://github.com/maahn/pyOptimalEstimation.git
+  - git+https://github.com/maahn/pamtra2.git
+  - git+https://github.com/maahn/pyOptimalEstimation.git

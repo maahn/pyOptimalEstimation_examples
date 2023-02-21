@@ -20,7 +20,7 @@ If you are new to Jupyter Notebooks, pelase check out the [official tutorial](ht
 Unless you have pyOptimalEstimation already installed, it is recommended to 
 
 1. Install [Anaconda](https://www.anaconda.com/distribution/#download-section). Version 3.6 or higher is recommended.
-2. Download or clone this repository, e.g. with the green `Clone or download` button. 
+2. Download or clone this repository, e.g. with the green `Code` button. 
 3. Open a terminal and navigate to the folder of this repository
 4. Install the [conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) `pyoe_examples` (so it won't mess with your default Python installation) with 
     1. on Linux: `conda env create -f environment_linux.yml`
