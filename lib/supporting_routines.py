@@ -249,7 +249,7 @@ def forwardPamtra(X,
         'radarReflectivity', 'meanDopplerVel'
     ]].load()
 
-    out = pn.Series()
+    out = pn.Series(dtype=np.float64)
     for freq in pam2.profile.frequency.values:
         out['Ze_%g' % (freq / 1e9)] = res['radarReflectivity'].sel(
             frequency=freq).values.squeeze()
