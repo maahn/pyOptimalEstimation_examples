@@ -3,8 +3,8 @@ channels:
 - conda-forge
 - default
 dependencies:
-- python=3.9
-- numpy=1.23
+- python=3.12
+- numpy
 - nb_conda
 - matplotlib
 - scipy
@@ -16,7 +16,7 @@ dependencies:
 - cython
 - dask
 - netcdf4
-- numba=0.56.4
+- numba
 - pip:
   # - pyOptimalEstimation
   # - git+git://github.com/maahn/pamtra2.git@7d4cb2feb42342b5bdf088b08fbf9ccacfce08aa
