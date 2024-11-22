@@ -4,20 +4,20 @@ channels:
 - default
 dependencies:
 - python=3.11
-- numpy
-- nb_conda
-- matplotlib
-- scipy
-- pandas
-- xarray
-- uncertainties
-- seaborn
-- pip
-- cython
-- dask
-- netcdf4
-- numba
-- setuptools<60
+- numpy=2.0.2
+- nb_conda=2.2.1
+- matplotlib=3.9.2
+- scipy=1.14.1
+- pandas=2.2.3
+- xarray=2024.10.0
+- uncertainties=3.2.2
+- seaborn=0.13.2
+- pip=24.3.1
+- cython=3.0.11
+- dask=2024.11.2
+- netcdf4=1.7.2
+- numba=0.60.0
+- setuptools=59.8.0
 - pip:
   # - pyOptimalEstimation
   # - git+git://github.com/maahn/pamtra2.git@7d4cb2feb42342b5bdf088b08fbf9ccacfce08aa
